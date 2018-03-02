@@ -7,6 +7,7 @@ import me.hao0.wepay.annotation.Optional;
  * Author: haolin
  * Email: haolin.h0@gmail.com
  * Date: 26/11/15
+ *
  * @since 1.0.0
  */
 public final class WepayField {
@@ -42,9 +43,14 @@ public final class WepayField {
     public static final String ERR_CODE_DES = "err_code_des";
 
     /**
-     * 公众帐号ID
+     * 公众帐号ID/服务商ID
      */
     public static final String APP_ID = "appid";
+
+    /**
+     * 小程序的APPID
+     */
+    public static final String SUB_APP_ID = "sub_appid";
 
     /**
      * 公众帐号ID
@@ -86,6 +92,11 @@ public final class WepayField {
      * 签名类型
      */
     public static final String SIGN_TYPE = "signType";
+
+    /**
+     * 签名类型(普通服务商小程序)
+     */
+    public static final String SIGNTYPE = "sign_type";
 
     /**
      * 商品或支付单简要描述
@@ -156,6 +167,7 @@ public final class WepayField {
 
     /**
      * 交易类型
+     *
      * @see TradeType
      */
     public static final String TRADE_TYPE = "trade_type";
@@ -180,6 +192,11 @@ public final class WepayField {
      */
     @Optional(any = false)
     public static final String OPEN_ID = "openid";
+
+    /**
+     * 用户在子商户appid下的唯一标识
+     */
+    public static final String SUB_OPEN_ID = "sub_openid";
 
     /**
      * 预支付ID
@@ -288,6 +305,7 @@ public final class WepayField {
 
     /**
      * 退款渠道
+     *
      * @see me.hao0.wepay.model.enums.RefundChannel
      */
     public static final String REFUND_CHANNEL = "refund_channel";

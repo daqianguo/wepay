@@ -3,6 +3,23 @@
 轻量的微信支付组件(A Lightweight Wechat Pay Component)
 ---
 
++ 包引入（20180302）:
+	
+	```xml
+    <dependency>
+        <groupId>me.hao0</groupId>
+        <artifactId>wepay-core</artifactId>
+        <version>1.3.2.daqian.0.1</version>
+    </dependency>
+	```
+	
++ 历史版本:
+
+    + 1.3.2.daqian.0.1:
+        
+        + 支持普通服务商小程序支付。
+---
+
 + 包引入:
 	
 	```xml

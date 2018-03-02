@@ -5,12 +5,7 @@ import me.hao0.common.security.MD5;
 import me.hao0.wepay.exception.WepayException;
 import me.hao0.wepay.model.enums.TradeType;
 import me.hao0.wepay.model.enums.WepayField;
-import me.hao0.wepay.model.pay.AppPayResponse;
-import me.hao0.wepay.model.pay.JsPayRequest;
-import me.hao0.wepay.model.pay.JsPayResponse;
-import me.hao0.wepay.model.pay.PayRequest;
-import me.hao0.wepay.model.pay.QrPayRequest;
-import me.hao0.wepay.model.pay.QrPayResponse;
+import me.hao0.wepay.model.pay.*;
 import me.hao0.wepay.util.RandomStrs;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -47,6 +42,18 @@ public final class Pays extends Component {
      * @return JsPayResponse对象，或抛WepayException
      */
     public JsPayResponse jsPay(JsPayRequest request){
+        checkJsPayParams(request);
+        Map<String, Object> respData = doJsPay(request, TradeType.JSAPI);
+        return buildJsPayResp(respData);
+    }
+
+    /**
+     * 服务商小程序-JS支付
+     * @param request 支付请求对象
+     * @return JsPayResponse对象，或抛WepayException
+     * @date 2018-03-02
+     */
+    public JsPayResponse jsPay(SlJsPayRequest request){
         checkJsPayParams(request);
         Map<String, Object> respData = doJsPay(request, TradeType.JSAPI);
         return buildJsPayResp(respData);
@@ -110,6 +117,20 @@ public final class Pays extends Component {
     private Map<String, Object> doJsPay(JsPayRequest request, TradeType tradeType){
         Map<String, String> payParams = buildPayParams(request, tradeType);
         payParams.put(WepayField.OPEN_ID, request.getOpenId());
+        return doPay(payParams);
+    }
+
+    /**
+     * 服务商小程序-JS支付
+     * @param request 支付信息
+     * @return 支付结果
+     * @date 2018-03-02
+     */
+    private Map<String, Object> doJsPay(SlJsPayRequest request, TradeType tradeType){
+        Map<String, String> payParams = buildPayParams(request, tradeType);
+        payParams.put(WepayField.OPEN_ID, request.getOpenId());
+        payParams.put(WepayField.SUB_APP_ID, request.getSubAppid());
+        payParams.put(WepayField.SUB_MCH_ID, request.getSubMchId());
         return doPay(payParams);
     }
 
